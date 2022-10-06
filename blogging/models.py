@@ -22,3 +22,9 @@ class Category(models.Model):
     
     class Meta:
         verbose_name_plural = 'Categories'
+        
+# Django automatically creates the intermediary model through for the many-to-many
+# relationship. Define the __str__ method of this model to not print anything,
+# otherwise things like "Category_posts object(1)", will be shown in the admin
+# view for the CategoryInLine
+Category.posts.through.__str__ = lambda self: ""
